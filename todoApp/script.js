@@ -22,7 +22,13 @@ let state = {
   ],
 };
 
+const savedState = localStorage.getItem("todo-state");
+if (savedState) {
+  state = JSON.parse(savedState);
+}
+
 function render() {
+  localStorage.setItem("todo-state", JSON.stringify(state));
   todoList.innerHTML = "";
 
   state.todos.forEach((todo, i) => {
